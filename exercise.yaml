@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: exercise
+  labels:
+    env: dev
+    app: nopdb
+    engine: postgressDB
+spec:
+  containers:
+    - name: nopdb
+      image: postgres:17
+      ports:
+        - containerPort: 5432
+      env:
+        - name: POSTGRES_PASSWORD
+          value: password@123
+        - name: POSTGRES_USER
+          value: sravan
+        - name: POSTGRES_DB
+          value: nopdatabase
+      resources:
+        requests:
+          cpu: "250m"
+          memory: "200Mi"
+        limits:
+          cpu: "1000"
+          memory: "800Mi"
