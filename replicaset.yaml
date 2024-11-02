@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nopdb-replicaset
+  labels:
+    env: dev
+    app: nopdb
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      env: dev
+      app: nopdb
+  template:
+    metadata: 
+      labels:
+        env: dev
+        app: nopdb
+    spec:
+      containers:
+      - name: nopdb
+        image: postgres:17
+        ports:
+        - containerPort: 5432
+        env:
+          - name: POSTGRES_PASSWORD
+            value: password@123
+          - name: POSTGRES_USER
+            value: sravan
+          - name: POSTGRES_DB
+            value: nopdatabase
